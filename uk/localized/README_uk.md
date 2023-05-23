@@ -1,53 +1,53 @@
-# YunoHost application catalog
+# Каталог додатків YunoHost
 
 <img src="https://avatars.githubusercontent.com/u/1519495?s=200&v=4" width=80><img src="https://yunohost.org/user/images/yunohost_package.png" width=80>
 
-Here you will find the repositories and versions of every apps available in YunoHost's default catalog.
+Тут ви знайдете репозиторії та версії кожного додатку, що доступні в стандартному каталозі Юнохоста.
 
-It is browsable here: https://yunohost.org/apps
+Доступний для перегляду тут: https://yunohost.org/apps
 
-The main file of the catalog is [**apps.toml**](./apps.toml) which contains references to the corresponding Git repositories for each application, along with a few metadata about them such as its category or maintenance state. This file regularly read by `list_builder.py` which publish the results on https://app.yunohost.org/default/.
+Основним файлом каталогу є [**додатки. oml**](./apps.toml) , який містить посилання на відповідні репозиторії Git для кожного додатку, спільно з декількома метаданими про них, такими як стан їх категорії або обслуговування. Цей файл регулярно читає `list_builder.py` , який публікує результати на https://app.yunohost.org/default/.
 
-### Where can I learn about app packaging in YunoHost?
+### Де я можу дізнатися про упаковку застосунків у Юнохості?
 
-- You can browse the contributor documentation : https://yunohost.org/contributordoc
-- If you are not familiar with Git/GitHub, you can have a look at our [homemade guide](https://yunohost.org/#/packaging_apps_git)
-- Don't hesitate to reach for help on the dedicated [application packaging chatroom](https://yunohost.org/chat_rooms) ... we can even schedule an audio meeting to help you get started!
+- Можна переглянути документацію співрозмовника: https://yunohost.org/contributordoc
+- Якщо ви не знайомі з Git/GitHub, ви можете подивитись на наш [саморобний посібник](https://yunohost.org/#/packaging_apps_git)
+- Не соромтеся звертатися за допомогою до присвячених [чаті програм](https://yunohost.org/chat_rooms) . . ми можемо навіть запланувати аудіо-зустріч, щоб допомогти вам почати!
 
-### How to add your app to the application catalog
+### Як додати ваш додаток до каталогу додатків
 
-> **Note** The YunoHost project will **NOT** integrate in its catalog applications that are not based on free-software upstreams.
+> **Зверніть увагу** Проект YunoHost **НЕ** інтегрувати в каталогові додатки, які не на основі потоків вільного програмного забезпечення.
 
-> **Note** We strongly encourage you to transfer the ownership of your repository to the YunoHost-Apps organization on GitHub, such that the community will help you with keeping your app working and up to date with packaging evolutions on the long run.
+> **Зверніть увагу** Ми наполегливо рекомендуємо вам передати право власності на ваш репозиторій на організацію YunoHost-Apps на GitHub, таким чином спільнота допоможе вам із збереженням вашої програми в актуальному стані з еволюцією упаковки на довгостроковому періоді.
 
-To add your application to the catalog:
-* Fork this repository and edit the [apps.toml](https://github.com/YunoHost/apps/tree/master/apps.toml) file
-* Add your app's ID and git information at the right alphabetical place
-* Indicate the app's functioning state: `notworking`, `inprogress`, or `working`
-* Indicate the app category, which you can pick from `categories.toml`
-* Indicate any anti-feature that your app may be subject to, see `antifeatures.toml` (or remove the `antifeatures` key if there's none)
-* Indicate if your app can be thought of as an alternative to popular proprietary services (or remove the `potential_alternative_to` key if there's none)
-* *Do not* add the `level` entry by yourself. Our automatic test suite ("the CI") will handle it.
-* Create a [Pull Request](https://github.com/YunoHost/apps/pulls/)
+Щоб додати свій додаток до каталогу:
+* Зробіть форк цього репозиторія і відредагуйте файл [apps.toml](https://github.com/YunoHost/apps/tree/master/apps.toml)
+* Додайте ідентифікатор програми та отримайте інформацію про неї в правому алфавітному місці
+* Вкажіть стан функціонування додатку: `не працює`, `дюйм`, або `працює`
+* Вкажіть категорію програми, яку можна вибрати з `категорії`
+* Вкажіть будь-яку анти-функцію, на яку буде подано програма для перегляду `антифункціональності Гробниці` (або видалити клавішу `антифункції, які` якщо там відсутні)
+* Вказуйте, чи ваша програма може вважатися альтернативою популярним приватним сервісам (або видалити `potential_alternative_to` ключем, якщо там немає чого)
+* *Не* додати запис до `рівня` самостійно. Наш автоматичний тестовий набір ("CI") опрацьовує його.
+* Створити [Запит на злиття](https://github.com/YunoHost/apps/pulls/)
 
-App example addition:
+Приклад додатка:
 ```toml
 [your_app]
-antifeatures = [ "deprecated-software" ]   # Remove if no relevant antifeature applies
-potential_alternative_to = [ "YouTube" ]   # Indicate if your app can be thought of as an alternative to popular proprietary services (or remove if none applies)
-category = "foobar"                        # Replace with the appropriate category id found in categories.toml
-state = "working"
-url = "https://github.com/YunoHost-Apps/your_app_ynh"
+antifeatures = [ "застаріле програмне забезпечення" ] # Видалити, якщо жодна антифункція не застосовується
+potential_alternative_to = [ "YouTube" ] # Вказуючи, якщо ваш додаток може вважатися альтернативним для популярних послуг (або видаляти, якщо немає застосувань)
+Категорія = "foobar" # Замінити відповідною категорією, знайденою в категоріях. oml
+state = "завдання
+url = "https://github.com/Yunost-Apps/your_app_ynh"
 ```
 
-> **Warning** Implicitly, the catalog publishes the `HEAD` of branch `master` (this can be overwritten by adding keys `branch` and `revision`). Therefore, **be careful that any commit on the `master` branch will automatically be published**. **We strongly encourage you to develop in separate branches**, and only merge changes that were carefully tested. Get in touch with the Apps group to obtain an access to the developer CI where you'll be able to test your app easily.
+> **Попередження** нездійсненно, каталог публікує `HEAD` голови `гілки` (це може бути перезаписано шляхом додавання ключів `гілки` та `змін`). Таким чином, **бути обережним, що будь-який коміт в `головній гілці` буде автоматично опубліковано**. **Ми наполегливо закликаємо вас розвиватися в окремих гілках**і лише об'єднати зміни, які були ретельно протестовані. Зв'яжіться з групою додатків та отримайте доступ до розробника CI, де ви зможете легко перевірити ваш додаток .
 
-### Updating apps levels in the catalog
+### Оновлення рівнів додатків у каталозі
 
-App packagers should *not* manually set their apps' level. The levels of all the apps are automatically updated once per week on Friday, according to the results from the official app CI.
+Пакети програм *не* власноруч встановлювати рівень додатків вручну. Рівень усіх програм автоматично оновлюється раз на тиждень у п'ятницю, згідно з результатами офіційного додатку CI.
 
-### Apps flagged as not-maintained
+### Програми, позначені як не підтримується
 
-Applications with no recent activity and no active sign from maintainer may be flagged in `apps.toml` with the `package-not-maintained` antifeature tag to signify that the app is inactive and may slowly become outdated with respect to the upstream, or with respect to good packaging practices. It does **not** mean that the app is not working anymore.
+Додатки, що не мають недавньої активності, і в `додатках не можуть бути відмічені. oml` з `-не обслуговованим пакетом` антифункціональним тегом для позначення того, що програма неактивна і може повільно застаріти залежно від першоджерела, або стосовно хорошої практики пакування пакетів. Це **не** значить, що програма більше не працює.
 
-Feel free to contact the app group if you feel like taking over the maintenance of a currently unmaintained app!
+Не соромтеся звертатися до групи додатків, якщо вам хочеться приймати технічне обслуговування поточного додатку!
